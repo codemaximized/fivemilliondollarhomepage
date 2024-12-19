@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Million Dollar Homepage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(1000, 1px);
+            grid-template-rows: repeat(1000, 1px);
+            gap: 1px;
+            justify-content: center;
+            background-color: #ccc;
+            padding: 10px;
+            margin: 20px auto;
+            width: fit-content;
+        }
+
+        .grid-item {
+            width: 1px;
+            height: 1px;
+            background-color: #f0f0f0;
+            cursor: pointer;
+        }
+
+        .grid-item:hover {
+            outline: 1px solid #000;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Million Dollar Homepage</h1>
+        <p>Click on a pixel to purchase it!</p>
+    </header>
+
+    <div class="grid-container" id="grid">
+        <!-- Grid items will be dynamically generated here -->
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Your Million Dollar Homepage</p>
+    </footer>
+
+    <script>
+        const gridContainer = document.getElementById('grid');
+        const gridSize = 1000000; // 1000 x 1000 grid
+
+        // Generate grid items
+        for (let i = 0; i < gridSize; i++) {
+            const gridItem = document.createElement('div');
+            gridItem.classList.add('grid-item');
+
+            // Add click event to purchase the pixel
+            gridItem.addEventListener('click', () => {
+                const color = prompt('Enter a hex color for your pixel (#RRGGBB):', '#000000');
+                const url = prompt('Enter the URL you want to link to:');
+
+                if (color && url) {
+                    gridItem.style.backgroundColor = color;
+                    gridItem.title = url;
+
+                    gridItem.addEventListener('click', () => {
+                        window.open(url, '_blank');
+                    });
+                }
+            });
+
+            gridContainer.appendChild(gridItem);
+        }
+    </script>
+</body>
+</html>
